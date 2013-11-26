@@ -1,0 +1,64 @@
+*metafuz.txt* Some helpers for working with fuzzyfinder
+
+==============================================================================
+                                                                *metafuz-about*
+1. About~
+
+This plugin is pretty damn simple.  It's just an extraction of a couple of
+commands from my vimrc file.  When working with certain code trees, it's nice
+to use fuzzyfinder (http://www.vim.org/scripts/script.php?script_id=1984), but
+it's a bit tough from time to time.  Keeping the fuzzyfinder cache hot and
+finding the right "project root" is a pain.  These things make it easier.
+
+
+==============================================================================
+                                                                *metafuz-setup*
+2. Setup~
+
+In order for some of this stuff to work, you've got to stick a file in the
+root of your project directory called .fuf.project.root
+
+Here's what I tend to do (since I'm using git):
+>
+    > cd /root/of/the/project
+    > touch .fuf.project.root
+    > echo .fuf.project.root >> .gitignore
+<
+Now the <Leader>fr command (and friends) work just fine.
+
+
+==============================================================================
+                                                             *metafuz-mappings*
+3. Mappings~
+
+  <Leader>fb
+
+    - Runs :FufBuffer
+
+  <Leader>ft
+
+    - Runs :FufTag
+
+  <Leader>ff
+
+    - Runs :FufFile with the directory of the current buffer's file as the
+      argument, including all of its decendents.
+>
+        e.g. If the current buffer is in /root/src/main/scala/package then
+             this will run :FufFile /root/src/main/scala/package/**/
+<
+  <Leader>fs
+
+    - Runs :FufFile with the "source" directory as the argument.
+>
+        e.g. If you've got your project in /root/src then this will run
+        :FufFile /root/src/**/
+<
+  <Leader>fr
+
+    - Runs :FufFile with the "project root" directory as the argument,
+      including all of its decendents.
+>
+        e.g. If you've got your project in /root then this will run
+        :FufFile /root/**/
+<
